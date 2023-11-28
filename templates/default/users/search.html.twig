@@ -1,0 +1,388 @@
+<article class="col-sm-12 col-md-12 col-lg-12">
+    <!-- new widget -->
+    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-fullscreenbutton="false">
+
+        <style>
+            div .label{
+                color:#333!important;
+            }
+            div, td{
+                text-align: left;
+            }
+        </style>
+
+        <header>
+            <span class="widget-icon"> <i class="fa fa-comments txt-color-white"></i> </span>
+            <h2> {{ translator.getLang('Filtre') }} </h2>
+            <div class="widget-toolbar">
+                <!-- add: non-hidden - to disable auto hide -->
+
+
+            </div>
+        </header>
+
+        <!-- widget div-->
+        <div>
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <div>
+                    <label>Title:</label>
+                    <input type="text" />
+                </div>
+            </div>
+            <!-- end widget edit box -->
+
+            <div class="widget-body widget-hide-overflow no-padding">
+                <!-- content goes here -->
+
+                <form id="searchUserForm" method="POST">
+                    <table cellpadding="4" cellspacing="0" border="0">
+                        {#<tr>#}
+                        {#<th colspan=2 class="heading">{{ translator.getLang('Quick Search') }} &nbsp;&nbsp;|&nbsp;&nbsp;</th>#}
+                        {#</tr>#}
+                        {#<tr>#}
+                        {#<td colspan=2>&nbsp;</td>#}
+                        {#</tr>#}
+                        <tr valign=top>
+                            <td colspan=2 class=formheading><b>{{ translator.getLang('Quick Search') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label" >{{ translator.getLang('Search type') }}</td>
+                            <td>
+                                <select name="field">
+                                    <option value="0">{{ translator.getLang('Smart') }}</option>
+                                    <option value="1">{{ translator.getLang('User') }}</option>
+                                    <option value="2">{{ translator.getLang('Customer number') }}</option>
+                                    <option value="3">{{ translator.getLang('Mail address') }}</option>
+                                    <option value="4">{{ translator.getLang('IP address') }}</option>
+                                    <option value="6">{{ translator.getLang('Surname, Name') }}</option>
+                                    <option value="7">{{ translator.getLang('Partner user id') }}</option>
+                                    {#<?php if(DOT_IT) : ?>#}
+                                    {#<option value="5"<?= ($field == 5) ? ' selected' : '' ?>> <?=$lang->getLang("National Insurance number")?></option>#}
+                                    {#<?php endif; ?>#}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">{{ translator.getLang('String Search') }}: </td>
+                            <td class="content"> <input name="search_string" type="text" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td class="label">{{ translator.getLang('Exactly Result') }}: </td>
+                            <td class="content"> <input type="checkbox" name="exact" ></td>
+                        </tr>
+
+                        <tr>
+                            <td class="label">{{ translator.getLang('Jurisdiction') }}: </td>
+                            <td>
+                                <select name='jurisdiction' id='jurisdictionFast'>
+                                    {#<?#}
+                                    {#foreach($clubs as $k=>$v){#}
+                                    {% for v,k in  jurList%}
+                                        {#?>#}
+                                        <optgroup label="{{ v }}">
+                                            {#{% for v2,k2 in k %}#}
+                                            {#{% if v2 == 'club_name' %}#}
+                                            {#<option value='{{ k.club_id }}' >{{ k2 }}</option>#}
+                                            {#{% endif %}#}
+                                            {#{% endfor %}#}
+
+                                            {% for v2,k2 in k %}
+                                                <option value='{{ v2 }}' >{{ k2 }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                        {#<?#}
+                                    {% endfor %}
+                                    {#}#}
+                                    {#?>#}
+                                </select>
+                            </td>
+                        </tr>
+
+                        {#<?php#}
+                        {#include('jurisdiction_filters.php');#}
+                        {#include('jurisdiction_filter_tabrow.php');#}
+                        {#?>#}
+
+                        {#<?php#}
+                        {#}#}
+                        {#?>#}
+                        <tr>
+                            <td colspan="2">
+                                <input type="hidden" name="page" value="customers/search">
+                                <input type="hidden" name="start_search" value="yes">
+                                <input type="hidden" name="doQuery" value="yes">
+                                <input type="submit" value="{{ translator.getLang('Search') }}">
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+
+
+                <!-- end content -->
+            </div>
+
+        </div>
+        <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+
+
+</article>
+
+<article class="col-sm-12 col-md-12 col-lg-12">
+    <!-- new widget -->
+    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-fullscreenbutton="false">
+
+        <style>
+            div .label{
+                color:#333!important;
+            }
+            div, td{
+                text-align: left;
+            }
+        </style>
+
+        <header>
+            <span class="widget-icon"> <i class="fa fa-comments txt-color-white"></i> </span>
+            <h2> {{ translator.getLang('Search results') }} </h2>
+            <div class="widget-toolbar">
+                <!-- add: non-hidden - to disable auto hide -->
+
+
+            </div>
+        </header>
+
+        <!-- widget div-->
+        <div>
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <div>
+                    <label>Title:</label>
+                    <input type="text" />
+                </div>
+            </div>
+            <!-- end widget edit box -->
+
+            <div class="widget-body widget-hide-overflow no-padding" id="searchResults">
+                <!-- content goes here -->
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>{{ translator.getLang('Username') }}</th>
+                            <th>{{ translator.getLang('First name') }}</th>
+                            <th>{{ translator.getLang('Email') }}</th>
+                            <th>{{ translator.getLang('Customer number') }}</th>
+                            <th>{{ translator.getLang('Betting Club') }}</th>
+                            <th>{{ translator.getLang('District') }}</th>
+                            <th>{{ translator.getLang('Nation') }}</th>
+                            <th>{{ translator.getLang('Region') }}</th>
+                            <th>{{ translator.getLang('Credits') }}</th>
+                            <th>{{ translator.getLang('Total bets') }}</th>
+                            <th>{{ translator.getLang('Total wins') }}</th>
+                            <th>{{ translator.getLang('Total deposits') }}</th>
+                            <th>{{ translator.getLang('Total withdrawals') }}</th>
+                            <th>{{ translator.getLang('Registration date') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <!-- end content -->
+            </div>
+
+        </div>
+        <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+
+
+</article>
+
+<script src="{{ asset('js/plugin/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/plugin/datatables/dataTables.colVis.min.js') }}"></script>
+<script src="{{ asset('js/plugin/datatables/dataTables.tableTools.min.js') }}"></script>
+<script src="{{ asset('js/plugin/datatables/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/plugin/datatable-responsive/datatables.responsive.min.js') }}"></script>
+
+<script>
+    $(document).ready(function(){
+
+
+        $('#searchUserForm').on('submit',function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray();
+            $.ajax({
+                url: '{{ path('user_search') }}',
+                method: "POST",
+                data: data,
+
+
+            }).done(function (data) {
+                console.log(data)
+                if (data == -1) {
+                    $.bigBox({
+                        title : "{{ translator.getLang('Session expired') }}",
+                        content : "{{ translator.getLang('Your session has expired, please login again') }}!",
+                        color : "#C46A69",
+                        //timeout: 6000,
+                        icon : "fa fa-warning shake animated",
+                        number : "1",
+                        timeout : 6000
+                    });
+                } else {
+                    try {
+                        $.bigBox({
+                            title : "{{ translator.getLang('Success') }}",
+                            content : "{{ translator.getLang('You results are here') }}!",
+                            color : "#76BA1B",
+                            //timeout: 6000,
+                            icon : "fa fa-thumbs-up shake animated",
+                            number : "1",
+                            timeout : 6000
+                        });
+                        if (data == 0) {
+                            $('#addUserFastModal').modal('hide');
+
+                            $('#accountFastForm').closest('form').find("input[type=text]").val("");
+
+
+                            //                                                window.location.href = '/login';
+                        }
+
+                        let toPrint = ''
+                        if(typeof data[0] != 'string'){
+                            $.each(data, function (i,e) {
+                                toPrint += '<tr>'
+                                toPrint += '<td>'+e["pun_username"]+'</td>';
+                                toPrint += '<td>'+e["pun_first_name"]+'</td>';
+                                toPrint += '<td>'+e["pun_email"]+'</td>';
+                                toPrint += '<td>'+e["pun_customer_number"]+'</td>';
+                                toPrint += '<td>'+e["Betting Club"]+'</td>';
+                                toPrint += '<td>'+e["District"]+'</td>';
+                                toPrint += '<td>'+e["Nation"]+'</td>';
+                                toPrint += '<td>'+e["Region"]+'</td>';
+                                toPrint += '<td>'+e["pcr_credits"]+e["pun_currency"]+'</td>';
+                                toPrint += '<td>'+e["pcr_total_bets"]+e["pun_currency"]+'</td>';
+                                toPrint += '<td>'+e["pcr_total_wins"]+e["pun_currency"]+'</td>';
+                                toPrint += '<td>'+e["pcr_total_deposits"]+e["pun_currency"]+'</td>';
+                                toPrint += '<td>'+e["pcr_total_withdrawals"]+e["pun_currency"]+'</td>';
+                                toPrint += '<td>'+e["pun_reg_date"]+'</td>';
+                                toPrint += '</tr>'
+                            })
+
+                            if (  $.fn.DataTable.isDataTable( '#searchResults table' ) ) {
+                                $('#searchResults table').dataTable().fnDestroy();
+                            }
+                            $('#searchResults tbody').empty().append(toPrint)
+                            $('#searchResults table').dataTable({
+                                // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+                                //     "t"+
+                                //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                                "sDom": "<'dt-toolbar'<'col-sm-6 col-xs-12 hidden-xs'l><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+                                    "t"+
+                                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                                "autoWidth" : true,
+                                "oLanguage": {
+                                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                                },
+                                "preDrawCallback" : function() {
+                                    // Initialize the responsive datatables helper once.
+                                    // if (!responsiveHelper_datatable_col_reorder) {
+                                    //     responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
+                                    // }
+                                },
+                                "rowCallback" : function(nRow) {
+                                    // responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
+                                },
+                                "drawCallback" : function(oSettings) {
+                                    // responsiveHelper_datatable_col_reorder.respond();
+                                }
+                            });
+
+                        }else{
+                            $.bigBox({
+                                title : "{{ translator.getLang('Warning') }}",
+                                content : data[0],
+                                color : "orange",
+                                //timeout: 6000,
+                                icon : "fa fa-warning shake animated",
+                                number : "1",
+                                timeout : 6000
+                            });
+                            if (  $.fn.DataTable.isDataTable( '#searchResults table' ) ) {
+                                $('#searchResults table').dataTable().fnDestroy();
+                            }
+                            $('#searchResults tbody').empty().append(toPrint)
+                            $('#searchResults table').dataTable({
+                                // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+                                //     "t"+
+                                //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                                "sDom": "<'dt-toolbar'<'col-sm-6 col-xs-12 hidden-xs'l><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
+                                    "t"+
+                                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                                "autoWidth" : true,
+                                "oLanguage": {
+                                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                                },
+                                "preDrawCallback" : function() {
+                                    // Initialize the responsive datatables helper once.
+                                    // if (!responsiveHelper_datatable_col_reorder) {
+                                    //     responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
+                                    // }
+                                },
+                                "rowCallback" : function(nRow) {
+                                    // responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
+                                },
+                                "drawCallback" : function(oSettings) {
+                                    // responsiveHelper_datatable_col_reorder.respond();
+                                }
+                            });
+                        }
+
+                        if (data == -28) {
+
+                        }
+
+                        if (data != 0 && data != -28) {
+                        }
+
+                        return data;
+                    }
+                    catch (e) {
+                        console.log(e);
+                        $.bigBox({
+                            title : "{{ translator.getLang('Error') }}",
+                            content : "{{ translator.getLang('Something went wrong') }}!",
+                            color : "#C46A69",
+                            //timeout: 6000,
+                            icon : "fa fa-warning shake animated",
+                            number : "1",
+                            timeout : 6000
+                        });
+                        return false;
+                    }
+                }
+            })
+                .fail(function (error) {
+                    console.log(error);
+                    return false
+                })
+                .always(function () {
+                    return false
+                });
+            return false;
+        })
+    })
+</script>

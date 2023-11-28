@@ -1,0 +1,212 @@
+
+
+<article class="col-sm-12 col-md-12 col-lg-12">
+    <!-- new widget -->
+    <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-fullscreenbutton="false">
+
+        <!-- widget options:
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+
+        <header>
+            <span class="widget-icon"> <i class="fa fa-comments txt-color-white"></i> </span>
+            <h2> {{ translator.getLang('Fast registration') }} </h2>
+            <div class="widget-toolbar non-hidden">
+                <!-- add: non-hidden - to disable auto hide -->
+            </div>
+        </header>
+
+        <!-- widget div-->
+        <div>
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <div>
+                    <label>Title:</label>
+                    <input type="text" />
+                </div>
+            </div>
+            <!-- end widget edit box -->
+
+            <div class="widget-body widget-hide-overflow no-padding">
+                <!-- content goes here -->
+
+                <form action="{{ path('fast_registration') }}" id="fastRegistrationForm" name="preg_form" class="smart-form client-form">
+
+                    <input type=hidden name=mode value="save">
+                    <input type="hidden" name="section" value="1">
+                    <fieldset>
+                        <section>
+                            <label class="text-align-left display-block">{{ translator.getLang('Username') }}</label>
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                                <input type="text" name="username" class="usrSrch" size=40  value="" >
+                                <b class="tooltip tooltip-bottom-right">{{ translator.getLang('Username') }}</b> </label>
+                        </section>
+
+                        <section>
+                            <label class="text-align-left display-block">{{ translator.getLang('Password') }}</label>
+                            <label class="input"> <i class="icon-append fa fa-key"></i>
+                                <input type="password" name="password" size=40  value="">
+                                <b class="tooltip tooltip-bottom-right">{{ translator.getLang('Password') }}</b> </label>
+                        </section>
+
+                        <section>
+                            <label class="text-align-left display-block">{{ translator.getLang('Repeat password') }}</label>
+                            <label class="input"> <i class="icon-append fa fa-key"></i>
+                                <input type="password" name="confirm_password" size=40  value="">
+                                <b class="tooltip tooltip-bottom-right">{{ translator.getLang('Repeat password') }}</b> </label>
+                        </section>
+
+                        <section>
+                            <label class="text-align-left display-block">{{ translator.getLang('Jurisdiction') }}</label>
+                            <label class="select">
+                                <select name='jurisdiction' id='jurisdictionFast'>
+                                    {#<?#}
+                                    {#foreach($clubs as $k=>$v){#}
+                                    {% for v,k in  jurList%}
+                                        {#?>#}
+                                        <optgroup label="{{ v }}">
+                                            {#{% for v2,k2 in k %}#}
+                                            {#{% if v2 == 'club_name' %}#}
+                                            {#<option value='{{ k.club_id }}' >{{ k2 }}</option>#}
+                                            {#{% endif %}#}
+                                            {#{% endfor %}#}
+
+                                            {% for v2,k2 in k %}
+                                                <option value='{{ v2 }}' >{{ k2 }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                        {#<?#}
+                                    {% endfor %}
+                                    {#}#}
+                                    {#?>#}
+                                </select>
+                                <b class="tooltip tooltip-bottom-right"></b> </label>
+                        </section>
+                        {#<section style="text-align: left;">#}
+                        {#<label class="select">{{ translator.getLang('Skin') }} :</label>#}
+                        {#<div id="skinFast"></div>#}
+                        {#</section>#}
+                    </fieldset>
+
+                    <footer>
+                        <button type="submit" class="btn btn-primary">
+                            {{ translator.getLang('Register') }}
+                        </button>
+                    </footer>
+
+
+                </form>
+
+                <!-- end content -->
+            </div>
+
+        </div>
+        <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+
+
+</article>
+
+<script>
+    $(document).ready(function(){
+
+        $('#fastRegistrationForm').on('submit',function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray();
+            $.ajax({
+                url: '{{ path('fast_registration') }}',
+                method: "POST",
+                data: data,
+
+
+            }).done(function (data) {
+                if (data == -1) {
+                    $.bigBox({
+                        title : "{{ translator.getLang('Session expired') }}",
+                        content : "{{ translator.getLang('Your session has expired, please login again') }}!",
+                        color : "#C46A69",
+                        //timeout: 6000,
+                        icon : "fa fa-warning shake animated",
+                        number : "1",
+                        timeout : 6000
+                    });
+                } else {
+                    try {
+
+                        if(data == 1){
+                            $.bigBox({
+                                title : "{{ translator.getLang('Success') }}",
+                                content : "{{ translator.getLang('You have registered a new user') }}!",
+                                color : "#76BA1B",
+                                //timeout: 6000,
+                                icon : "fa fa-thumbs-up shake animated",
+                                number : "1",
+                                timeout : 6000
+                            });
+                        }else{
+                            $.bigBox({
+                                title : "{{ translator.getLang('Warning') }}",
+                                content : data,
+                                color : "#ffb200",
+                                //timeout: 6000,
+                                icon : "fa fa-thumbs-up shake animated",
+                                number : "1",
+                                timeout : 6000
+                            });
+                        }
+
+                        if (data == 0) {
+                            $('#addUserFastModal').modal('hide');
+
+                            $('#accountFastForm').closest('form').find("input[type=text]").val("");
+
+
+                            //                                                window.location.href = '/login';
+                        }
+                        if (data == -28) {
+
+                        }
+
+                        if (data != 0 && data != -28) {
+                        }
+
+                        return data;
+                    }
+                    catch (e) {
+                        console.log(e);
+                        $.bigBox({
+                            title : "{{ translator.getLang('Error') }}",
+                            content : "{{ translator.getLang('Something went wrong') }}!",
+                            color : "#C46A69",
+                            //timeout: 6000,
+                            icon : "fa fa-warning shake animated",
+                            number : "1",
+                            timeout : 6000
+                        });
+                        return false;
+                    }
+                }
+            })
+                .fail(function (error) {
+                    console.log(error);
+                    return false
+                })
+                .always(function () {
+                    return false
+                });
+            return false;
+        })
+    })
+</script>

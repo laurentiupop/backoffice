@@ -1,0 +1,10 @@
+/*--- header style ---*/
+header.headerStyle{
+    background: black;
+    height: 60px;
+}
+
+.logo{
+    margin-left: 15px;
+}
+/*--- end header style ---*/

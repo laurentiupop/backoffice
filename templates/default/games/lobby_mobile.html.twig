@@ -1,0 +1,1117 @@
+<html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="{{commons_dir}}/css/fonts/lobby/style.css" media="screen, projection" />
+</head>
+<body>
+<style>
+    body{
+        background: #000;
+        width: 100%;
+    }
+
+    .btnMenu, .iconUser{
+        font-size: 30px;
+    }
+
+    .iconUser{
+        background: #FFC83A;
+        padding-left: 3px;
+        padding-right: 3px;
+        border-radius: 3px;
+        color: black;
+        margin-top: 0px;
+        margin-left: 8px;
+        padding-top: 3px;
+    }
+
+    .headerInfo{
+        border-radius: 3px;
+        background: linear-gradient(#464e53 0%, #686E72 5.7%, #4C5355 100%);
+        /*margin-left: -10px;*/
+        /*margin-right: -10px;*/
+        padding-top: 5px;
+        /* padding-bottom: 5px; */
+        color: #dedfe0;
+        margin: 0 -10px;
+    }
+
+    .usernameUser{
+        position: relative;
+        top: 0;
+        margin-left: 6px;
+        text-shadow: 1px 2px 4px #000000;
+        text-transform: uppercase;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 42%;
+        text-overflow: ellipsis;
+    }
+
+    .iconPosition{
+        position: relative;
+        margin-bottom: -3px;
+    }
+
+    .menuIcon{
+        margin-left: 5px;
+        position: relative;
+        top:-3px;
+        text-shadow: 2px 2px #000000;
+    }
+
+    .creditTitle{
+        font-size: 13px;
+        text-shadow: 1px 2px 4px #000000;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        margin-top: -4px;
+    }
+
+    .creditAmount{
+        text-align: center;
+        font-size: 14px;
+        text-shadow: 1px 2px 4px #000000;
+
+    }
+
+    .noLoggedUser{
+        position: absolute;
+        background: white;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        left: 10%;
+        height: 200px;
+        margin-top: 25%;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 3px;
+        z-index: 999;
+    }
+
+    .icon{
+        font-size: 45px;
+        color: red;
+        margin-top: 14%;
+    }
+
+    .message{
+        margin-top: 20px;
+    }
+
+    .iconPosition2{
+        font-size: 23px;
+        float: right;
+        margin-right: 7px;
+        margin-top: 5px;
+        text-shadow: 1px 2px 4px #000000;
+    }
+
+    .TabsInfo{
+        margin-top: -1px;
+        padding-left: 5px!important;
+        padding-right: 5px!important;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #ffffff;
+        /* background-color: #fff; */
+        text-transform: uppercase;
+        border: 0;
+        border-color: #dee2e6 #dee2e6 #fff;
+        background: linear-gradient(#89d34b 0%, #4F912A 100%);
+        padding: 9px;
+        font-size:10px!important;
+    }
+    .nav-tabs {
+        border-bottom: 0px solid #dee2e6;
+    }
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .nav-tabs .nav-item {
+        margin-bottom: -1px;
+        width: calc(50% - 2px);
+        /* margin-left: calc(1% + 1px); */
+        margin-right: 2px;
+        text-align: center;
+        margin-top: 5px;
+        background: linear-gradient(#464e53 0%, #686E72 5.7%, #4C5355 100%);
+        border-radius: 4px;
+        border-top: 2px solid #b5e28f;
+        border-bottom: 2px solid #596d49;
+        font-size:10px!important;
+    }
+    .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+        border-color: #e9ecef #e9ecef #dee2e6;
+        color: white;
+        background: linear-gradient(#89d34b 0%, #4F912A 100%);
+        border-radius: 3px;
+        border: 0;
+        padding: 9px;
+    }
+
+
+
+    .showRoomDetails,.showRoomDetails3{
+        display: block;
+        width: 100%;
+        color: white;
+        font-size: 13px;
+        height: 90px;
+        border-radius: 5px;
+        margin-bottom: 3px;
+        border-top: 2px solid #454D52;
+        background: linear-gradient(#30393e 0%, #262E32 100%);
+        cursor:pointer
+    }
+
+    .showRoomDetails2{
+        display: block;
+        width: 100%;
+        color: white;
+        font-size: 13px;
+        height: 55px;
+        border-radius: 5px;
+        margin-bottom: 3px;
+        border-top: 2px solid #454D52;
+        background: linear-gradient(#30393e 0%, #262E32 100%);
+        cursor:pointer
+    }
+
+    .arrowRig{
+        border-right: 0!important;
+    }
+
+    .arrowRig:focus > .arrowRigthStyle, .arrowRig:active > .arrowRigthStyle, .arrowRig:hover > .arrowRigthStyle , .leftEvent:focus, .leftEvent:active, .leftEvent:hover {
+        color: #7ec744!important;
+    }
+
+    .positionTables{
+        display: inline-block!important;
+        padding: 0;
+        text-align: center;
+        margin: 8px 0 0;
+        border-right: 1px solid black;
+    }
+
+    .arrowRigthStyle{
+        position: relative;
+        display: block;
+        top: 0;
+        color: #a6aead;
+        font-size: 18px;
+    }
+
+    .userStyle{
+        font-size: 15px;
+        color: #abafb3;
+        text-shadow: 1px 2px 4px #000000;
+    }
+
+    .fontUserIcon{
+        font-size: 11px;
+        margin-top: 2px;
+        /*font-weight: 600;*/
+    }
+
+    .headStyle{
+        color: #abafb3;
+        text-shadow: 1px 2px 4px #000000;
+        text-transform: uppercase;
+    }
+
+    .colored{
+        background: linear-gradient(#464e53 0%, #686E72 5.7%, #4C5355 100%);
+        border-top: 1px transparent;
+    }
+
+    .noLoggedUserBack{
+        background: black;
+        z-index: 9;
+        position: absolute;
+        width: 100%;
+        height: 200%;
+        opacity: 0.8;
+    }
+
+    .hidden{
+        display: none;
+    }
+
+
+    .playersInfo{
+        background: red;
+        border-radius: 3px;
+        padding: 10px;
+        color: white;
+        display: block;
+        background: linear-gradient(#30393e -50%, #262E32 100%);
+        border-top: 2px solid #454D52;
+    }
+
+    .usrStyle{
+        border-top: 1px solid black;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .elementStyle{
+        text-align: center;
+    }
+
+    @-ms-viewport{ width: device-width; }
+
+
+    .plyStyle{
+        text-align: center;
+        display: block;
+        padding-bottom: 7px;
+        color: #dedfe0;
+        text-transform: uppercase;
+        text-shadow: 1px 2px 4px #000000;
+    }
+
+    .greenColor{
+        color: #ffffff;
+        text-transform: uppercase;
+        border: 0;
+        border-color: #dee2e6 #dee2e6 #fff;
+        background: linear-gradient(#89d34b 0%, #4F912A 100%);
+        padding: 0 9px;
+        border-radius: 3px;
+        margin: -7px 0 4px 0;
+    }
+
+    .styleText{
+        color: #000;
+        line-height: 40px;
+    }
+
+    .styleText2{
+        line-height: 40px;
+        text-transform: none;
+        text-shadow: 1px 1px 4px #00000082;
+    }
+
+    .specialMargin{
+        margin-bottom: 3px;
+        margin-left: 5px;
+        margin-right: -9px;
+    }
+
+    .infoDet{
+        background: linear-gradient(#30393e 0%, #262E32 100%);
+        border-top: 2px solid #454D52;
+        border-radius: 3px;
+        margin-left: -5px;
+        margin-right: 8px;
+        text-align: center;
+        color: white;
+        width: 49%!important;
+        flex: 0 0 49%;
+        max-width: 49%;
+    }
+
+    .leftEvent{
+        position: relative;
+        display: block;
+        top: 0;
+        color: black;
+        font-size: 40px;
+    }
+
+    .joinGame{
+        border-color: #dee2e6 #dee2e6 #fff;
+        background: linear-gradient(#89d34b 0%, #4F912A 100%);
+        text-align: center;
+        /* width: 100%; */
+        display: block;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 4px;
+        position: sticky;
+        width: 100%;
+        bottom: 10px;
+        color: white;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        text-shadow: 1px 2px 4px #000000;
+    }
+
+    .refreshPos{
+        text-shadow: 1px 2px 4px #000000;
+        position: absolute;
+        font-size: 13px;
+        margin-left: -18px;
+        margin-top: 3px;
+    }
+
+    .w-100{
+        max-width: 100%!important;
+    }
+
+    div[class^="detailsBank"]{
+        position: relative;
+        top:6px;
+    }
+
+    .tablesBankbankroulette{
+        /*margin-top: 24px;*/
+    }
+    .tablesBankzecchinetta{
+        margin-top: 5px;
+    }
+    .tab-content{
+        padding-top: 5px;
+    }
+
+    .textJackpot{
+        display: block;
+        width: calc(100% - 8px);
+        background: #08202b;
+        padding: 5px 0;
+        margin-left: -5px;
+        border: 1px solid #383838;
+        box-shadow: 1px 1px 27px -8px black;
+    }
+
+    .textJackpotText{
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    div[class^="jackpot"]{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .fa.fa-circle{
+        color: #ffff77;
+        font-size: 10px;
+    }
+
+    .jackTot{
+        width: 340px;
+        height: 138px;
+        /* background-attachment: fixed; */
+        background: url('{{commons_dir}}/media/images/jackpot/Jackpot.png') no-repeat center;
+        position: relative;
+        display: block;
+        background-size: 100%;
+        margin-top: -26px;
+        z-index: -1;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .totalJackpot {
+        color: white;
+        display: block;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        line-height: 177px;
+        font-size: 40px;
+        text-shadow: 3px 4px 10px #000000;
+        /* font-weight: 900; */
+        font-family: arial black;
+    }
+
+    .totUser, .totTables{
+        width: 50%;
+        height: 61px;
+        text-align: center;
+        line-height: 47px;
+        display: inline-block;
+        color: white;
+    }
+
+    .totUser{
+        background: url('{{commons_dir}}/media/images/jackpot/online_player.png') no-repeat left;
+        position: relative;
+        background-size: 50px
+    }
+
+    .totTables{
+        background: url('{{commons_dir}}/media/images/jackpot/tables.png') no-repeat right;
+        position: relative;
+        background-size: 50px;
+    }
+
+    .roundElement{
+        display: block;
+        position: absolute;
+        width: calc(100% - 3px);
+        height: 41px;
+        border: 2px solid gray;
+        border-radius: 76px;
+        margin-top: 10px;
+        z-index: -2;
+    }
+
+    .smallTextPos{
+        color: #828f94;
+        width: 64px;
+        display: block;
+        margin-left: 58px;
+        /* height: 100px; */
+        line-height: 1;
+        text-align: left;
+        margin-top: 6px;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    .smallTextPosR{
+        color: #828f94;
+        width: 64px;
+        display: block;
+        margin-left: 58px;
+        /* height: 100px; */
+        line-height: 1;
+        text-align: right;
+        margin-top: 6px;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    .usrToChange{
+        margin-left: 58px;
+        width: 100%;
+        display: inline-block;
+        font-size: 25px;
+        line-height: 2.4;
+        text-shadow: 3px 4px 10px #000000;
+        font-family: arial black;
+    }
+
+    .tabToChange{
+        margin-right: -42px;
+        text-align: left;
+        width: 100%;
+        display: inline-block;
+        font-size: 25px;
+        line-height: 2.4;
+        text-shadow: 3px 4px 10px #000000;
+        font-family: arial black;
+    }
+
+    .totalDetailsI{
+        margin-bottom: 5px;
+        margin-top: -12px;
+    }
+    .opc0{
+        opacity: 0;
+    }
+
+    .red{
+        color:red;
+        padding-left: 5px;
+        /*position: absolute;*/
+        /*margin-top: 4px;*/
+    }
+
+    .fa-bolt.activess {
+        color: orange;
+        margin-right: 5px;
+    }
+</style>
+
+
+<div class="noLoggedUserBack" style="display: none;"></div>
+<div class="noLoggedUser" style="display: none;">
+    <div class="icon">
+        <i class="fa fa-ban"></i>
+    </div>
+    <div class="message">
+        {{ translator.getLang('Your seesion is invalid. Please login again')}}!
+    </div>
+</div>
+
+
+<div class="container w-100">
+    <div class="row headerInfo">
+        <div class="col-7 pl-1 pr-0">
+            <div class="btnMenu d-inline-block">
+                <i class="fa fa-bars menuIcon"></i>
+            </div>
+            <div class="iconUser d-inline-block">
+                <i class="icon-avatar iconPosition"></i>
+            </div>
+            <div class="usernameUser d-inline-block">{{username}}</div>
+        </div>
+        <div class="col-4 refreshStyle p-0">
+
+            <div class="creditTitle"><i class="fa fa-refresh refreshPos"></i> {{ translator.getLang('Credit')}}</div>
+            <div class="creditAmount">{{currency}} {{credit}}</div>
+        </div>
+        <div class="col-1 p-0">
+            <div class="d-inline-block iconPosition2">
+                <i class="icon-close iconPosition closeWin"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row TabsInfo">
+
+
+
+
+        <div class="col-12 p-0 m-0">
+            <ul class="nav nav-tabs tabList" role="tablist">
+                <li class="nav-item ">
+                    <a class="toClick nav-link hidden" id="bankroulette-tab" data-select="bankroulette" data-toggle="tab" role="tab" aria-controls="bankroulette" aria-selected="true" href="#bankroulette">Bank roulette</a>
+                </li>
+
+
+                {% if gamesDisabled != 'zecchinetta') %}
+                <li class="nav-item ">
+                    <a class="toClick nav-link hidden" id="zecchinetta-tab" data-select="zecchinetta" data-toggle="tab" role="tab" aria-controls="zecchinetta" aria-selected="false" href="#zecchinetta">Zecchinetta</a>
+                </li>
+                {% endif %}
+                <li class="nav-item ">
+                    <a class="toClick nav-link" id="Bankroulettemultilive-tab" data-select="Bankroulettemultilive" data-toggle="tab" role="tab" aria-controls="Bankroulettemultilive" aria-selected="false" href="#Bankroulettemultilive">Bank roulette live</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="toClick nav-link" id="BankRouletteLivePorto-tab" data-select="BankRouletteLivePorto" data-toggle="tab" role="tab" aria-controls="BankRouletteLivePorto" aria-selected="false" href="#BankRouletteLivePorto">BankRoulette Live Porto</a>
+                </li>
+            </ul>
+
+
+
+            <div class="tab-content h-100" style="padding-bottom: 1px">
+                <div id="bankroulette" class="tab-pane h-100 fade show active hidden" role="tabpanel" aria-labelledby="bankroulette-tab">
+                    <div class="detailsBankbankroulette hidden"></div>
+                    <div class="tablesBankbankroulette"></div>
+                </div>
+
+                {% if $gamesDisabled != 'zecchinetta') %}
+                <div id="zecchinetta" class="tab-pane h-100 fade hidden" role="tabpanel" aria-labelledby="zecchinetta-tab">
+                    <div class="detailsBankzecchinetta hidden"></div>
+                    <div class="tablesBankzecchinetta"></div>
+                </div>
+                {% endif %}
+                <div id="Bankroulettemultilive" class="tab-pane h-100 fade hidden" role="tabpanel" aria-labelledby="Bankroulettemultilive-tab">
+                    <div class="detailsBankBankroulettemultilive hidden"></div>
+                    <div class="tablesBankBankroulettemultilive"></div>
+                </div>
+                <div id="BankRouletteLivePorto" class="tab-pane h-100 fade hidden" role="tabpanel" aria-labelledby="BankRouletteLivePorto-tab">
+                    <div class="detailsBankBankRouletteLivePorto hidden"></div>
+                    <div class="tablesBankBankRouletteLivePorto"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row TableInfo hidden">
+        <div class="col-12"></div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{ scripts|raw }}
+<script>
+    nrIframes = 0;
+    function openMultiTable(game,table,checkSess,type){
+        var url = "{{url}}";
+        var w= "960";
+        var h= "640";
+
+        var title=game+".Table:" + table;
+        url +='&gid='+table;
+        if(typeof targetWin != 'undefined'){
+            if(type == 0 ){
+                targetWin.close();
+                targetWin = typeof ups;
+                console.log('test0');
+            }
+        }
+
+        if(typeof targetWin != 'undefined' && targetWin != 'undefined' ){
+            if(nrIframes < 3){
+                targetWin.document.write("<iframe  id=''"+table+" src="+url+"></iframe><i class='fa fa-times closeIframe'></i>");
+                nrIframes++;
+                console.log(nrIframes)
+                if(nrIframes < 2){
+                    targetWin.document.write ("<style>iframe{width: calc(100%); height: 50%; margin: 0 3px; border: 0;}</style>");
+                }else{
+                    targetWin.document.write ("<style>iframe{width: calc(50% - 6px); height: 50%; margin: 0 3px; border: 0;}</style>");
+                }
+            }else{
+                alert(`{{ translator.getLang('You have reach the maximum tables') }}`)
+            }
+
+        }else
+        {
+
+            currentOpenedTable=table;
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            targetWin = window.open ('', title,'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+            targetWin.document.write ("<iframe id='"+table+"' src="+url+"></iframe>");
+            targetWin.document.write ("<style>body{    background: #000;}</style>");
+            targetWin.document.write ("<style>iframe{width: 100%;height: 100%;border: 0;}</style>");
+            targetWin.focus();
+
+            targetWin.onunload = targetWin.onbeforeunload = (function(){
+                currentOpenedTable='';nrIframes = 0;targetWin = 'undefined';
+                return null;
+            });
+
+            targetWin.addEventListener("pagehide", function(){
+                currentOpenedTable='';nrIframes = 0;targetWin = 'undefined';
+                return null;
+            },false);
+
+        }
+    }
+
+    function sessionNotExp(wdw,doNotRedirect){
+        doNotRedirect = typeof doNotRedirect !== 'undefined' ? doNotRedirect : false;
+        $.post("/services",{action:"14"}, function(data){
+            if(data!=1){
+                wdw.close();
+                jAlert('Your session has expired.Please login again to enjoy out games!','Session Expired', function(answer) {
+                    if (answer)
+                    {
+                        if(!doNotRedirect) {
+                            doLogin();
+                        }
+                    }
+                });
+
+                return false;
+            }
+        });
+    }
+    function doLogin(){
+        window.location.href = '/login/do';
+    }
+
+</script>
+<script>
+    secondsRefreshTime = 5000;
+    currentOpenedTable='';
+    noUser = 1;
+
+    var webApp = '{{webApp}}'
+    viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+
+    function buildGamesDetails(id, data, name, buyIn, max){
+
+        var toPrint ='';
+        var toPrintHead = '<div class="row greenColor"><i class="fa fa-caret-left leftEvent col-1 m-0 p-0"></i> <span class="col-3 m-0 p-0 styleText">ID '+ id +'</span> <span class="col-8 m-0 p-0 styleText2">'+ name +'</span></div>';
+        toPrintHead += '<div class="row specialMargin"><div class="col-6 infoDet">'+ buyIn +'</div><div class="col-6 infoDet">'+ max +'</div></div>';
+        toPrintHead += '<div class="playersInfo"><div class="row plyStyle" style="text-align: center">{{ translator.getLang('"Players"}}</div>';
+
+        var joinNow = '<div class="row joinGame" data-id="'+ id +'">{{ translator.getLang('"Join now"}}!</div>';
+        $.each(data, function(index, element){
+            if(element[2] == id) {
+                if(element[5]) {
+                    var nr  = element[5][5].split('/')[0];
+                    if(element[5][8] != 'null'){
+                        var players = element[5][8].split(';');
+
+                        $.each(players, function(key, player){
+                            toPrint += '<div class="row usrStyle"><div class="col-6 elementStyle">' + player.split(',')[0] + '</div><div class="col-6 elementStyle">' + (player.split(',')[1] / 100) + '</div></div>';
+                        });
+
+                        for(var i = 0 ;i < 10 - nr; i++){
+                            toPrint += '<div class="row usrStyle"><div class="col-6 elementStyle">-</div><div class="col-6 elementStyle">-</div></div>'
+                        }
+
+                    }
+                }
+            }
+
+        });
+
+        if(toPrint == ''){
+            for(var j = 0 ;j < 10; j++){
+                toPrint += '<div class="row usrStyle"><div class="col-6 elementStyle">-</div><div class="col-6 elementStyle">-</div></div>'
+            }
+
+        }
+        $('.detailsBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+        $('.tablesBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+        $('.tabList').toggleClass('hidden');
+        $('.detailsBank'+$('.nav-link.active').attr('aria-controls')).empty().append(toPrintHead + toPrint + '</div>' + joinNow);
+
+        $('.leftEvent').off('click');
+        $('.leftEvent').on('click', function(){
+            $('.detailsBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+            $('.tablesBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+            $('.tabList').toggleClass('hidden');
+        });
+
+
+        $('.joinGame').off('click');
+        $('.joinGame').on('click', function(){
+            openMultiTable('bankroulette', id, true);
+        })
+    }
+
+    var type, args = [];
+    if( typeof location.search.substr(1) != 'undefined'){
+        args = location.search.substr(1).split(/&/);
+
+        if(typeof args[1] !='undefined'){
+            if (args[1] != "") {
+                type = args[1].split('=')[1];
+            }
+            if(typeof args[2] !='undefined'){
+                if (args[2] != "") {
+                    type = args[2].split('=')[1];
+                }
+            }
+
+
+            if(type == 'zecchinetta'){
+                setTimeout(function(){$('#zecchinetta-tab').click();},800);
+            }else if(type == 'bankrouletteporto'){
+                setTimeout(function(){$('#BankRouletteLivePorto-tab').click();},800);
+            }else{
+
+                setTimeout(function(){$('#bankroulette-tab').click();},800);
+            }
+        }
+    }
+
+    function buildLobbyStructure(gamesInfoArray){
+        var rate, curr;
+        $.ajax({
+            url: webApp,
+            type: "POST",
+            data: {
+                skinid : '{{skinid}}',
+                username: '{{username}}',
+                sessionid: "{% if is defined key %}{{ key }}{% endif %}",
+                extall: false,
+                operationtype: 3006
+            }
+        })
+            .done(function( data ) {
+                curr = data.split('~')[2];
+                rate = data.split('~')[3];
+                if(parseFloat(rate) > 50)
+                    if(!curr.startsWith('&'))
+                        curr = '';
+                var oldAmount = $('#creditAmount').text().split(' ')[1];
+                $('#creditAmount').html(curr+' '+ (parseFloat(oldAmount) * parseFloat(rate)))
+
+
+                var oldJackpot = $('.totalJackpot').text().split(' ')[0];
+                $('.totalJackpot').html((parseFloat(oldJackpot) * parseFloat(rate)) + ' '+ curr);
+                var tableList = '';
+                var totalUser = 0;
+                var oldTotal = typeof $('.totalJackpot').text() != 'undefined' ? 0 : $('.totalJackpot').text();
+                var name = '-'
+                var buyIn = '<div class="headStyle">Buy-in</div><div>0/0</div>';
+                var max = '<div class="headStyle">Min/Max</div><div>0/0</div>';
+                var jackpot = '<div class="jackTot"><div class="totalJackpot">'+ (parseFloat(oldTotal)*rate) + ' '+curr +'</div></div><div class="totalDetailsI"><div class="totUser"><div class="roundElement"><span class="smallTextPos">Online players</span></div><div class="ttUsr"><span class="usrToChange"></span></div></div><div class="totTables"><div style="margin-left:3px" class="roundElement"><span class="smallTextPosR">Tables Available</span></div><div class="ttTables"><span class="tabToChange"></span></div></div></div>';
+                var jackpot2 = '<div class="totalDetailsI"><div class="totUser"><div class="roundElement"><span class="smallTextPos">Online players</span></div><div class="ttUsr"><span class="usrToChange"></span></div></div><div class="totTables"><div style="margin-left:3px" class="roundElement"><span class="smallTextPosR">Tables Available</span></div><div class="ttTables"><span class="tabToChange"></span></div></div></div>';
+                var totalTable = gamesInfoArray.length;
+                $.each(gamesInfoArray, function(index, element){
+
+                    if($('#zecchinetta-tab').hasClass('active')){
+                        tableList += '<div class="roomId showRoomDetails2" id="'+ element[2] +'"  onclick="openMultiTable(\'bankroulette\','+ element[2] +',true);">';
+
+                    }else if($('#Bankroulettemultilive').hasClass('active')) {
+                        tableList += '<div class="roomId showRoomDetails" id="' + element[2] + '"  onclick="openMultiTable(\'bankroulette\',' + element[2] + ',true);">';
+                    }else
+                    if($('#BankRouletteLivePorto').hasClass('active')){
+                        tableList += '<div class="roomId showRoomDetails3" id="'+ element[2] +'"  onclick="openMultiTable(\'BankRouletteLivePorto\','+ element[2] +',true);">';
+                    }else
+                        tableList += '<div class="roomId showRoomDetails3" id="'+ element[2] +'"  onclick="openMultiTable(\'bankroulettelive\','+ element[2] +',true);">';
+
+
+
+                    if(element[5]) {
+                        var locked = element[5][10] == '1' ? '<i class="fa fa-lock red activess"></i>' : '<i class="fa fa-lock red opc0"></i>';
+                        var toSplit = element[2].split('');
+
+                        var flash = (element[5][9] <= 30 && element[5][9] > 0 && toSplit[0] == 1 && toSplit[1] == 1) ? ' <i class="fa fa-bolt red activess"></i>' : '';
+
+                        if(element[5][8] != 'null'){
+                            var players = element[5][8].split(';');
+                            totalUser =  totalUser + parseInt(players.length);
+                            var isDealear = 0;
+                            tableList += '<div class="playersNr col-1 d-inline-block positionTables"><div><i class="icon-person userStyle"></i></div><div class="fontUserIcon">'+ players.length +'/10</div></div>';
+
+                        }else{
+                            tableList += '<div class="playersNr col-1 d-inline-block positionTables"><div><i class="icon-person userStyle"></i></div><div class="fontUserIcon">0/10</div></div>';
+                        }
+                        tableList += '<div class="tableName col-4 d-inline-block positionTables"><div class="headStyle">Table Name</div><div>'+flash + element[5][0] + locked+'</div></div>';
+                        tableList += '<div class="buyIn col-3 d-inline-block positionTables"><div class="headStyle">Buy-In</div><div>' + (parseFloat((element[5][7].split(',')[1] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '/' + (parseFloat((element[5][7].split(',')[0] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '</div></div>';
+                        tableList += '<div class="minmax col-3 d-inline-block positionTables"><div class="headStyle">Min/Max</div><div>' + (parseFloat((element[5][6].split(',')[1] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '/'+ (parseFloat((element[5][6].split(',')[0] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '</div></div>';
+                        name = element[5][0];
+
+                        buyIn = '<div class="headStyle">Buy-In</div><div>' + (parseFloat((element[5][7].split(',')[1] / 100 )) * parseFloat(rate)) + ' '+ curr +'/' + (parseFloat((element[5][7].split(',')[0] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '</div>'
+                        max = '<div class="headStyle">Min/Max</div><div>' + (parseFloat((element[5][6].split(',')[1] / 100 )) * parseFloat(rate)) + ' '+ curr + '/' + (parseFloat((element[5][6].split(',')[0] / 100 )) * parseFloat(rate)).toFixed(0) + ' '+ curr + '</div>'
+                    }else{
+                        name = '-';
+                        tableList += '<div class="playersNr col-1 d-inline-block positionTables"><div><i class="icon-person userStyle"></i></div><div class="fontUserIcon">0/10</div></div>';
+                        tableList += '<div class="tableName col-4 d-inline-block positionTables"><div class="headStyle">Table Name</div><div>0</div></div>';
+                        tableList += '<div class="buyIn col-3 d-inline-block positionTables"><div class="headStyle">Buy-In</div><div>0/0</div></div>';
+                        tableList += '<div class="minmax col-3 d-inline-block positionTables"><div class="headStyle">Min/Max</div><div>0/0</div></div>';
+
+                    }
+
+                    tableList += '<div class="arrowRig col-1 d-inline-block positionTables" id="'+ element[2] +'"><i class="fa fa-info-circle arrowRigthStyle rightEvent" ></i><span>Info</span></div>';
+                    if($('#zecchinetta-tab').hasClass('active')){
+                        tableList += '</div>'
+                    }
+                    else {
+                        tableList += '<div class="jackpot col-12 d-inline-block positionTables" id="' + element[2] + '">' +
+                            '<div class="textJackpot"><div class="textJackpotText headStyle">TABLE JACKPOT</div><i class="fa fa-circle"></i><div class="jackpot' + element[2] + '">0</div></div></div></div>';
+                    }
+                });
+                var roomId = typeof $('.roomId').attr('id') != 'undefined' ? $('.roomId').attr('id') : 0;
+                if($('#zecchinetta-tab').hasClass('active')){
+                    $('.tablesBank'+$('.nav-link.active').attr('aria-controls')).empty().append(jackpot2+tableList);
+
+                }else
+                    $('.tablesBank'+$('.nav-link.active').attr('aria-controls')).empty().append(jackpot + tableList);
+
+                $('.showRoomDetails,.showRoomDetails2, .showRoomDetails3, .showRoomDetails4').off('click');
+                $('.showRoomDetails,.showRoomDetails3,.showRoomDetails3,.showRoomDetails4').on('click', function (e) {
+                    $(this).class().removeClass('colored');
+                    $(this).addClass('colored');
+                });
+
+                $('.arrowRig').off('click');
+                $('.arrowRig').on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    buildGamesDetails($(this).attr('id'), gamesInfoArray, name, buyIn, max);
+                });
+                $('.usrToChange').text(totalUser);
+                $('.tabToChange').text(totalTable);
+            });
+
+
+    }
+
+
+    $('.toClick').off('click');
+    $('.toClick').on('click', function(){
+        rebuildRequest($(this).attr('data-select'));
+        takeGames();
+
+    })
+
+    function takeGames(){
+        var url = '{{hostLobby}}';
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                opcode: 4000,
+                hosts: true,
+                get: true
+            },
+            success: function (data) {
+                obj = JSON.parse(data);
+                $.each(obj ,function(key,item) {
+                    $('#'+ key.toLowerCase() +'-tab').removeClass('hidden').attr('data-select', key);
+                    $('#'+ key.toLowerCase() +'-tab').parent().removeClass('hidden');
+                    $('#'+ key.toLowerCase()).removeClass('hidden');
+                    $('#'+ key.toLowerCase()).parent().removeClass('hidden');
+
+                })
+                $('.toClick.nav-link.hidden').parent().remove();
+                rebuildRequest($('.nav-link.active').attr('data-select'));
+            }
+        });
+    }
+
+
+
+    takeGames();
+    function rebuildRequest(game) {
+
+        $.ajax({
+            url: '{{hostLobby}}',
+            method: 'POST',
+            async: true,
+            data: {
+                opcode: '{{lobbyInfoRequestCode}}',
+                gname: game,
+                get: true
+            },
+            success: function (data) {
+                if(data != -48){
+                    $.ajax({
+                        url : '{{hostLobby}}',
+                        method:'POST',
+                        async:true,
+                        data: {
+                            opcode: 4000,
+                            get: true,
+                            jackpot: true,
+                            gname: game
+                        },
+                        success: function(data){
+                            if(noUser == 1){
+                                var curr,rate;
+                                $.ajax({
+                                    url: webApp,
+                                    type: "POST",
+                                    data: {
+                                        skinid : '{{skinid}}',
+                                        username: '{{username}}',
+                                        sessionid: "{% if is defined key %}{{ key }}{% endif %}",
+                                        extall: false,
+                                        operationtype: 3006
+                                    }
+                                })
+                                    .done(function( data2 ) {
+                                        curr = data2.split('~')[2];
+                                        rate = data2.split('~')[3];
+                                        if(parseFloat(rate) > 50)
+                                            if(!curr.startsWith('&'))
+                                                curr = '';
+                                        data = JSON.parse(data);
+                                        var totalJack = 0;
+
+                                        $.each(data, function (index, element) {
+                                            $('.jackpot' + element.gid).html((element.amount * rate).toFixed(0) + ' ' + curr)
+                                            totalJack = parseFloat(totalJack) + parseFloat(element.amount) * rate
+                                        });
+
+
+                                        var totalToPrint = totalJack;
+                                        $('.totalJackpot').html(totalToPrint.toFixed(0) + ' ' + curr);
+                                    });
+                            }
+                        }
+                    })
+                    if(noUser == 1){
+                        var gamesInfo = [];
+                        var games = data.split('$');
+                        $.each(games, function (index, element) {
+                            gamesInfo[index] = element.split('~');
+                        });
+
+                        $.each(gamesInfo, function (index, element) {
+                            gamesInfo[index][5] = element[5].split('@');
+                        });
+                        buildLobbyStructure(gamesInfo);
+                    }else{
+                        $('.tableContainer').empty().append('<div class="noUserInfo">You must login for play</div>')
+                    }
+                }
+            }
+        });
+    }
+
+    setInterval(function(){
+        if($('.detailsBank'+$('.nav-link.active').attr('aria-controls')).hasClass('hidden')){
+            rebuildRequest($('.nav-link.active').attr('data-select'));
+        }else{
+            var id = $('.row.joinGame').attr('data-id');
+            $('.arrowRig[id="'+ id +'"]').trigger('click');
+            $('.detailsBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+            $('.tablesBank'+$('.nav-link.active').attr('aria-controls')).toggleClass('hidden');
+            $('.tabList').toggleClass('hidden');
+        }
+    },secondsRefreshTime);
+
+    function getCredits(key)
+    {
+        $.ajax({
+            url: "{{hostLobby}}",
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            data: {
+                sessionid: "{% if is defined key %}{{ key }}{% endif %}",
+                opcode: '{{lobbyCreditRequestCode}}'
+            }
+        })
+            .done(function( data ) {
+                try {
+                    creditsnew = data.split("~");
+                    var credit = "{{currency}} " + creditsnew[0];
+                    var username = creditsnew[1];
+                    if (username != ''){
+                        $('.noLoggedUserBack').css('display', 'none');
+                        $('.noLoggedUser').css('display', 'none');
+                        $('.usernameUser').text(username);
+                    }
+                    else{
+                        $('.noLoggedUserBack').css('display', 'block');
+                        $('.noLoggedUser').css('display', 'block');
+                    }
+                    $(".creditAmount").fadeOut("slow").fadeIn("slow").empty().append(credit);
+                }
+                catch (e){
+                    console.log(e);
+                    window.close();
+                }
+
+            });
+        $.ajax({
+            url: webApp,
+            type: "POST",
+            data: {
+                skinid : '{{skinid}}',
+                username: '{{username}}',
+                sessionid: "{% if is defined key %}{{ key }}{% endif %}",
+                extall: false,
+                operationtype: 3006
+            }
+        })
+            .done(function( data ) {
+                var curr = data.split('~')[2];
+                var rate = data.split('~')[3];
+                if(parseFloat(rate) > 50)
+                    if(!curr.startsWith('&'))
+                        curr = '';
+                var oldAmount = $('#creditAmount').text().split(' ')[1];
+                $('#creditAmount').html(curr+' '+ (parseFloat(oldAmount) * parseFloat(rate)))
+
+                var oldJackpot = $('.totalJackpot').text();
+                $('.totalJackpot').html((parseFloat(oldJackpot) * parseFloat(rate)) + ' '+ curr)
+            });
+    }
+
+    $(document).ready( function(){
+        $('.refreshStyle').on('click', function () {
+            getCredits();
+        });
+        getCredits();
+
+        $('.closeWin').on('click', function(){
+            window.close();
+        })
+        $('.toClick').off('click');
+        $('.toClick').on('click', function(){
+            rebuildRequest($(this).attr('data-select'));
+            takeGames();
+
+        })
+    })
+</script>
+</body>
+</html>

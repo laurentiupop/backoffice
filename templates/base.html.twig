@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin new{% endblock %}</title>
+    {% include ("default/base_structure/head.html.twig") %}
+    {% block stylesheets %}{% endblock %}
+
+    {% block javascripts %}{% endblock %}
+</head>
+<body class="fixed-page-footer">
+{% include ("default/base_structure/header.html.twig") %}
+{% block body %}{% endblock %}
+{% include ("default/base_structure/general_scripts.html.twig") %}
+{% include ("default/base_structure/footer.html.twig") %}
+</body>
+</html>

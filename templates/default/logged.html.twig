@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% set bodyClass = 'actualpage_'~app.request.pathinfo|trim('/') %}
+
+{% block body %}
+    <style>
+        .floatinBtns{
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btnLogout,.btnOldSite {
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid;
+        }
+
+        .btnOldSite {
+            padding: 5px 10px;
+            background: #12bd00;
+            margin: 10px 2px;
+            color: #fff;
+            border-radius: 2px;
+        }
+
+        .btnOldSite:hover{
+            color: #12bd00;
+            background: #fff;
+            border: 1px solid;
+        }
+
+
+
+        .btnLogout{
+            padding: 5px 10px;
+            background: #f50303;
+            margin: 10px 2px;
+            color: #fff;
+            border-radius: 2px;
+        }
+
+        .btnLogout:hover{
+            color: #f50303;
+            background: #fff;
+            border: 1px solid;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="floatinBtns">
+                <div class="btnOldSite" onclick="location.href = 'https://testadm.cspstar.com/'">Old site</div>
+                <div class="btnLogout" onclick="location.href = '/logout'">Logout</div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
